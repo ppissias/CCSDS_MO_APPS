@@ -17,12 +17,13 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <groupId>int.esa</groupId>
-    <artifactId>CCSDS_MO_POM</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>int.esa.ccsds.mo</groupId>
+    <artifactId>POM</artifactId>
+    <version>2</version>
+    <relativePath/>
   </parent>
   
-  <artifactId>CCSDS_MAL_TRANSPORT_BRIDGE</artifactId>
+  <artifactId>TRANSPORT_BRIDGE</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -38,20 +39,20 @@
   <licenses>
     <license>
       <name>The European Space Agency Public License, Version 2.0</name>
-      <url>https://raw.github.com/esa/CCSDS_APPS/master/LICENCE.md</url>
+      <url>https://raw.github.com/esa/CCSDS_MO_APPS/master/LICENCE.md</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
 
   <scm>
-    <connection>scm:git:git@github.com:esa/CCSDS_APPS.git</connection>
-    <developerConnection>scm:git:git@github.com:esa/CCSDS_APPS.git</developerConnection>
-    <url>https://github.com/esa/CCSDS_APPS</url>
+    <connection>scm:git:git@github.com:esa/CCSDS_MO_APPS.git</connection>
+    <developerConnection>scm:git:git@github.com:esa/CCSDS_MO_APPS.git</developerConnection>
+    <url>https://github.com/esa/CCSDS_MO_APPS</url>
   </scm>
   
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/esa/CCSDS_APPS/issues</url>
+    <url>https://github.com/esa/CCSDS_MO_APPS/issues</url>
   </issueManagement>
   
   <developers>
@@ -63,24 +64,56 @@
     </developer>
   </developers>
 
+  <properties>
+    <assembly.mainClass>esa.mo.mal.transport.bridge.Main</assembly.mainClass>
+  </properties>
+
   <dependencies>
     <dependency>
-      <groupId>int.esa</groupId>
-      <artifactId>CCSDS_MAL_API</artifactId>
+      <groupId>int.esa.ccsds.mo</groupId>
+      <artifactId>API_MAL</artifactId>
     </dependency>
     <dependency>
-      <groupId>int.esa</groupId>
-      <artifactId>CCSDS_MAL_IMPL</artifactId>
+      <groupId>int.esa.ccsds.mo</groupId>
+      <artifactId>MAL_IMPL</artifactId>
     </dependency>
     <dependency>
-      <groupId>int.esa</groupId>
-      <artifactId>CCSDS_MAL_TRANSPORT_RMI</artifactId>
-      <scope>runtime</scope>
+      <groupId>int.esa.ccsds.mo</groupId>
+      <artifactId>TRANSPORT_RMI</artifactId>
     </dependency>
     <dependency>
-      <groupId>int.esa</groupId>
-      <artifactId>CCSDS_MAL_ENCODING_STRING</artifactId>
-      <scope>runtime</scope>
+      <groupId>int.esa.ccsds.mo</groupId>
+      <artifactId>ENCODING_STRING</artifactId>
     </dependency>
   </dependencies>
+  
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/..</directory>
+        <includes>
+          <include>LICENCE.md</include>
+        </includes>
+      </resource>
+    </resources>
+    
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId> 
+      </plugin>
+    </plugins>
+  </build>
 </project>
